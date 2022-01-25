@@ -15,6 +15,7 @@ namespace Lesson_2_Task1
             if (!decimal.TryParse(minInput, out decimal minTemp))
             {
                 Console.WriteLine("Exception information: {0}", "Invalid min temperature value.");
+                Console.ReadLine();
                 return;
             }
 
@@ -24,6 +25,7 @@ namespace Lesson_2_Task1
             if (!decimal.TryParse(maxInput, out decimal maxTemp))
             {
                 Console.WriteLine("Exception information: {0}", "Invalid max temperature value.");
+                Console.ReadLine();
                 return;
             }
 
