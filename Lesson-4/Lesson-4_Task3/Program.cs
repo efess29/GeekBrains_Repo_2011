@@ -13,7 +13,8 @@ namespace Lesson_4_Task3
             Winter = 1,
             Spring = 2,
             Summer = 3,
-            Fall = 4
+            Fall = 4,
+            InvalidSeason = 5
         }
 
         static void Main(string[] args)
@@ -36,7 +37,9 @@ namespace Lesson_4_Task3
                 return;
             }
 
-            string seasonName = DetermineSeason(number);
+            Seasons seasonNameEnum = DetermineSeasonEnum(number);
+            string seasonName = DetermineSeasonString(seasonNameEnum);
+
             Console.WriteLine($"Entered month number is: {number}. Season's name is: {seasonName}.");
             Console.ReadLine();
         }
@@ -46,24 +49,52 @@ namespace Lesson_4_Task3
         /// </summary>
         /// <param name="monthNumber"></param>
         /// <returns></returns>
-        static string DetermineSeason(int monthNumber)
+        static Seasons DetermineSeasonEnum(int monthNumber)
         {
             switch (monthNumber)
             {
                 case 12: case 1: case 2:
-                    return Seasons.Winter.ToString();
+                    return Seasons.Winter;
 
                 case 3: case 4: case 5:
-                    return Seasons.Spring.ToString();
+                    return Seasons.Spring;
                 
                 case 6: case 7: case 8:
-                    return Seasons.Summer.ToString();
+                    return Seasons.Summer;
                 
                 case 9: case 10: case 11:
-                    return Seasons.Fall.ToString();
+                    return Seasons.Fall;
                 
                 default:
                     Console.WriteLine("Enter a month number.");
+                    Console.ReadLine();
+                    break;
+            }
+
+            return Seasons.InvalidSeason;
+        }
+
+        /// <summary>
+        /// Представляет метод вывода времени года в текстовом виде из входящего Enum перечисления 
+        /// </summary>
+        /// <param name="season"></param>
+        /// <returns></returns>
+        static string DetermineSeasonString(Seasons season)
+        {
+            Seasons currentSeason = season;
+
+            switch (currentSeason)
+            {
+                case Seasons.Winter:
+                    return "Winter";
+                case Seasons.Spring:
+                    return "Spring";
+                case Seasons.Summer:
+                    return "Summer";
+                case Seasons.Fall:
+                    return "Fall";
+                default:
+                    Console.WriteLine("Season is invalid or null.");
                     Console.ReadLine();
                     break;
             }
