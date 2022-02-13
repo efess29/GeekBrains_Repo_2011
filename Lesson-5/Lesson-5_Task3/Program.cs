@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
 
 namespace Lesson_5_Task3
@@ -45,7 +46,10 @@ namespace Lesson_5_Task3
                     Console.WriteLine($"Adding numbers to a \"{fileName}\" file...");
                     Console.WriteLine();
                     Thread.Sleep(1000);
-                    File.WriteAllBytes(fullPath, bytes);
+
+                    BinaryFormatter formatter = new BinaryFormatter();
+                    formatter.Serialize(new FileStream(fullPath, FileMode.OpenOrCreate), bytes);
+
                     Console.WriteLine($"Numbers added to a \"{fileName}\" file!");
                 }
 
